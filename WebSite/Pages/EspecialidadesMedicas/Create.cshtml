@@ -1,0 +1,51 @@
+﻿@page
+@model WebSite.Pages.EspecialidadesMedicas.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Nueva Especialidad</h1>
+<p>Completa el formulario para crear una nueva especialidad.</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <form method="post">
+            <div class="card-body">        
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="mb-3">
+                    <label asp-for="EspecialidadesMedica.Nombre" class="form-label"></label>
+                    <input asp-for="EspecialidadesMedica.Nombre" class="form-control" />
+                    <span asp-validation-for="EspecialidadesMedica.Nombre" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="EspecialidadesMedica.Descripcion" class="form-label"></label>
+                     <textarea asp-for="EspecialidadesMedica.Descripcion" class="form-control" row="3"></textarea>
+                    <span asp-validation-for="EspecialidadesMedica.Descripcion" class="text-danger"></span>
+                </div>
+                <div class="mb-3 form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="EspecialidadesMedica.Activo" /> @Html.DisplayNameFor(model => model.EspecialidadesMedica.Activo)
+                    </label>
+                </div>
+               @* <div class="mb-3 form-group">
+                    <label asp-for="EspecialidadesMedica.Creacion" class="form-label"></label>
+                    <input asp-for="EspecialidadesMedica.Creacion" class="form-control" />
+                    <span asp-validation-for="EspecialidadesMedica.Creacion" class="text-danger"></span>
+                </div>   *@                  
+            </div>
+             <div class="card-footer">                                          
+                <button class="btn btn-primary me-2" type="submit"><i class="bi bi-save me-2"></i> Guardar</button>
+                    <a asp-page="Index">Volver a la lista</a>                                
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

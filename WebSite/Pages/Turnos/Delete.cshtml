@@ -1,0 +1,61 @@
+﻿@page
+@model WebSite.Pages.Turnos.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Eliminar Turno</h1>
+<p>¿Esta seguro que desea eliminar el turno?</p>
+
+<div class="row">
+    <div class="col-md-4">
+        
+            <div class="card">
+                <div class="card-body">
+
+                    <div class="mb-3">
+                        <label asp-for="Turno.PacienteNombre" class="form-label">Nombre del paciente</label>
+                        <input asp-for="Turno.PacienteNombre" class="form-control" disabled />        
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Turno.EspecialidadMedicaId" class="form-label">Especialidad</label>
+                        <input type="text" class="form-control" asp-for="Turno.EspecialidadMedica.Nombre" disabled/>                    
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Turno.Fecha" class="form-label"></label>
+                    <input type="date" class="form-control" asp-for="Turno.Fecha" disabled />
+                </div>
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <label asp-for="Turno.Desde" class="form-label"></label>
+                            <input type="date" class="form-control" asp-for="Turno.Desde" disabled />
+                            
+                            </div>
+                            <div class="col-6">
+                                <label asp-for="Turno.Hasta" class="form-label"></label>
+                            <input type="date" class="form-control" asp-for="Turno.Hasta" disabled />
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                <form method="post">
+                    <input type="hidden" asp-for="Turno.TurnoId" />
+                    <button type="submit" class="btn btn-danger me-2">
+                        <i class="bi bi-trash me-2"></i> Borrar
+                    </button> 
+                    <a asp-page="./Index">Volver a la lista</a>
+                </form>
+                </div>
+
+            </div>
+       
+    </div>
+</div>
+
+

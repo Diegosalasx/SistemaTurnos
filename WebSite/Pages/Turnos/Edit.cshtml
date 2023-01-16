@@ -1,0 +1,62 @@
+﻿@page
+@model WebSite.Pages.Turnos.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Editar Turno</h1>
+
+<p>Edita los campos del formulario para actualizar el turno.</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="card">
+                <div class="card-body">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="mb-3">
+                        <label asp-for="Turno.NombrePaciente" class="form-label">Nombre del paciente</label>
+                        <input asp-for="Turno.NombrePaciente" class="form-control" />
+                        <span asp-validation-for="Turno.NombrePaciente" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Turno.EspecialidadMedicaId" class="form-label">Especialidad</label>
+                        <select asp-for="Turno.EspecialidadMedicaId" class="form-select" asp-items="Model.EspecialidadMedica"></select>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Turno.Fecha" class="form-label"></label>
+                        <input type="date" class="form-control" asp-for="Turno.Fecha" />
+                        <span asp-validation-for="Turno.Fecha" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-6">
+                                <label asp-for="Turno.Desde" class="form-label"></label>
+                                <select name="Turno.Desde" asp-items="Model.RangeTime" class="form-select"></select>
+                                <span asp-validation-for="Turno.Desde" class="text-danger"></span>
+                            </div>
+                            <div class="col-6">
+                                <label asp-for="Turno.Hasta" class="form-label"></label>
+                                <select asp-for="Turno.Hasta" asp-items="Model.RangeTime" class="form-select"></select>
+                                <span asp-validation-for="Turno.Hasta" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <button class="btn btn-primary me-2" type="submit"><i class="bi bi-save me-2"></i> Guardar</button>
+                    <a asp-page="Index">Volver a la lista</a>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,87 @@
+﻿@page
+@model WebSite.Pages.Turnos.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Turnos</h1>
+<p>Desde aquí puede gestionar los turnos para los pacientes.</p>
+<hr />
+<form asp-page="./Index" method="get">
+<div class="row">
+    <div class="col-6">
+        <div class="row">
+            <div class="col-auto">
+                <input type="text" readonly class="form-control-plaintext" 
+                            id="staticEmail2" value="Seleccione una especialidad" />
+            </div>
+            <div class="col-auto input-group" style="width:300px">            
+                <select id="especialidadMedicaId" Name="especialidadMedicaId"
+                        asp-items="Model.EspecialidadesMedicas"
+                        class="form-select"></select>
+                <input type="submit" value="Buscar" class="btn btn-outline-secondary" />            
+            </div>            
+        </div>
+    </div>
+    <div class="col-6 text-end">        
+        <a asp-page="Create" class="btn btn-primary">
+            <i class="bi bi-calendar-plus me-2"></i> Nuevo Turno
+        </a>
+    </div>
+</div>
+</form>
+
+<br />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                Fecha
+            </th>
+            <th>
+                Horario
+            </th>
+            <th>
+                Paciente nombre
+            </th>
+            <th>
+                Día
+            </th>
+            <th>
+                Especialidad Médica
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Turno) {
+        <tr>
+            <td>
+                @item.Fecha.Value.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                    de @Html.DisplayFor(modelItem => item.Desde)
+                    a @Html.DisplayFor(modelItem => item.Hasta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PacienteNombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Dia.NombreDia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EspecialidadMedica.Nombre)
+            </td>
+            <td class="text-end">
+                <div class="btn-group">
+                    @*<a asp-page="./Details" asp-route-id="@item.TurnoId" class="btn btn-sm btn-secondary"><i class="bi bi-eye me-2 text-dark"></i>Detalle</a>*@
+                    <a asp-page="./Edit" asp-route-id="@item.TurnoId" class="btn btn-sm btn-secondary"><i class="bi bi-pencil me-2 text-dark"></i>Editar</a>
+                    <a asp-page="./Delete" asp-route-id="@item.TurnoId" class="btn btn-sm btn-secondary"><i class="bi bi-trash me-2 text-dark"></i>Borrar</a>
+                </div>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

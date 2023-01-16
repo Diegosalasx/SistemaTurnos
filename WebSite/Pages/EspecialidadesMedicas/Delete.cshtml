@@ -1,0 +1,45 @@
+﻿@page
+@model WebSite.Pages.EspecialidadesMedicas.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Eliminar Especialidad</h1>
+<p>¿Esta seguro que desea eliminar la especialdiad?</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">            
+                <div class="card-body">                    
+                    <div class="mb-3">
+                        <label asp-for="EspecialidadesMedica.Nombre" class="form-label"></label>
+                        <input asp-for="EspecialidadesMedica.Nombre" class="form-control" disabled/>                        
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="EspecialidadesMedica.Descripcion" class="form-label"></label>
+                    <textarea asp-for="EspecialidadesMedica.Descripcion" class="form-control" row="3" disabled></textarea>
+                    </div>
+                    <div class="mb-3 form-group form-check">
+                        <label class="form-check-label">
+                        <input class="form-check-input" asp-for="EspecialidadesMedica.Activo" disabled /> @Html.DisplayNameFor(model => model.EspecialidadesMedica.Activo)
+                        </label>
+                    </div>
+                    <div class="mb-3 form-group">
+                    <label asp-for="EspecialidadesMedica.Creacion" class="form-label"></label>
+                    <input asp-for="EspecialidadesMedica.Creacion" class="form-control" disabled/>
+                    </div>   
+                </div>
+                <div class="card-footer">
+                    <form method="post">
+                        <input type="hidden" asp-for="EspecialidadesMedica.EspecialidadMedicaId" />
+                        <button type="submit" class="btn btn-danger me-2">
+                            <i class="bi bi-trash me-2"></i> Borrar
+                        </button> 
+                        <a asp-page="./Index">Volver a la lista</a>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>

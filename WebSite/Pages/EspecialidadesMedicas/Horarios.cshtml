@@ -1,0 +1,95 @@
+﻿@page
+@model WebSite.Pages.EspecialidadesMedicas.HorariosModel
+
+@{
+    ViewData["Title"] = "Horarios";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Horarios</h1>
+<p>Desde aqui puede asiganar los hoarios para una especialidad.</p>
+<div class="row mb-3">
+    <div class="col-md-4">
+        <div class="card">            
+            <div class="card-body">
+                <div class="mb-3">
+                    <label asp-for="EspecialidadesMedica.Nombre" class="form-label"></label>
+                    <input asp-for="EspecialidadesMedica.Nombre" class="form-control" disabled/>                        
+                </div>
+                <div class="mb-3">
+                    <label asp-for="EspecialidadesMedica.Descripcion" class="form-label"></label>
+                    <textarea asp-for="EspecialidadesMedica.Descripcion" class="form-control" row="3"></textarea>
+                </div>                
+            </div>       
+        </div>
+    </div>
+</div>
+ <div class="row">
+    <form method="post">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body p-0">
+                <table class="table table-striped table-borderless ">
+                    <thead>
+                        <tr>
+                            <th>
+                                Nombre
+                            </th>
+                            <th>
+                                Descripcion
+                            </th>
+                            <th>
+                                Activo
+                            </th>
+                            <th>
+                                Creacion
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.HorarioViews)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NombreDia)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Desde)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Hasta)
+                                </td>
+                                <td>
+                                    <input name="GroupChecks" type="checkbox" value="@(item.HorarioiID)" @(item.IsChecked ? "checked" : "") />
+
+
+                                </td>
+                                <td>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="card-footer">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                
+                <button type="submit" class="btn btn-primary  me-2">
+                    <i class="bi bi-save me-2"></i>Guardar
+                </button>                
+
+                <a asp-page="Index">Back to List</a>
+                <input type="Hidden" name="EspecialidadMedicaId" asp-for="EspecialidadMedicaId" />
+            </div>
+        </div>
+    </div>
+    </form>
+ </div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
